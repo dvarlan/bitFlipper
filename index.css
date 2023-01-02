@@ -1,4 +1,5 @@
 body {
+    font-family: monospace, "Times New Roman", serif;
     background-color: #202124;
     color:aliceblue
 }
@@ -14,4 +15,11 @@ li {
 }
 p {
     margin-bottom: 0px;
+}
+ul {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+button {
+    font-family: monospace, "Times New Roman", serif;
 }

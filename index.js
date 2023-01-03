@@ -63,11 +63,12 @@ saveBtn.addEventListener("click", function () {
 })
 
 resetBtn.addEventListener("click", function () {
-    // TODO: Ask user if they really want to delete the save
-    if(localStorage.getItem("cpuInfo") !== null) {
-        localStorage.clear()
+    if (confirm("Do you really want to reset your current game?")) {
+        if(localStorage.getItem("cpuInfo") !== null) {
+            localStorage.clear()
+        }
+        location.reload()
     }
-    location.reload()
 })
 
 bitBtn.addEventListener("click", function addBits () {
@@ -103,3 +104,10 @@ gpuBtn.addEventListener("click", function () {
         render()
     }
 })
+
+// Checks if the user wants to close the page & makes them confirm it
+window.addEventListener("beforeunload", function (e) {
+    if (e) {
+        e.returnValue = "Are you sure?"
+    }
+}, false)

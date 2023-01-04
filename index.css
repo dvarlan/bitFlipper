@@ -1,11 +1,17 @@
 body {
-    zoom: 260%; /*Does work in Chrome but not Firefox*/
+    zoom: 230%; /*Does work in Chrome but not Firefox*/
     font-family: monospace, "Times New Roman", serif;
     background-color: #202124;
     color:aliceblue
 }
 div.bitsClass p {
     margin-bottom: 16px;
+}
+div.cpuClass li {
+    list-style: none;
+}
+div.gpuClass li {
+    list-style: none;
 }
 hr {
     width: 45%;

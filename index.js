@@ -1,9 +1,14 @@
 const bitBtn = document.getElementById("bitbtn")
 const bitText = document.getElementById("bits")
+
 const cpuBtn = document.getElementById("cpubtn")
 const cpuStats = document.getElementById("cpustats")
+const cpuDesc = document.getElementById("cpudesc")
+
 const gpuBtn = document.getElementById("gpubtn")
 const gpuStats = document.getElementById("gpustats")
+const gpuDesc = document.getElementById("gpudesc")
+
 const saveBtn = document.getElementById("savebtn")
 const resetBtn = document.getElementById("resetbtn")
 
@@ -48,13 +53,17 @@ function render() {
 
 function renderStats() {
     cpuStats.innerText = "CPU Level: " + cpu.cpuLvl
+    cpuDesc.innerText = `Flips ${cpu.cpuLvl} more bits per click!`
     gpuStats.innerText = "GPU Level: " + gpu.gpuLvl
+    gpuDesc.innerText = `Adds ${gpu.gpuLvl} extra bits every 10 seconds!`
 }
 
 function gpuPassive() {
     bits += gpu.gpuPower
     render()
 }
+
+//TODO: Add Autosave after 1 min
 
 saveBtn.addEventListener("click", function () {
     localStorage.setItem("cpuInfo", JSON.stringify(cpu))

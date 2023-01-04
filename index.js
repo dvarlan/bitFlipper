@@ -10,6 +10,7 @@ const resetBtn = document.getElementById("resetbtn")
 let currentClickAmount = 1
 let bits = 0
 let timer = -1337
+let reload = false
 
 let cpu = {
     cpuCost : 50,
@@ -67,7 +68,9 @@ resetBtn.addEventListener("click", function () {
         if(localStorage.getItem("cpuInfo") !== null) {
             localStorage.clear()
         }
+        reload = true
         location.reload()
+        reload = false
     }
 })
 
@@ -107,7 +110,10 @@ gpuBtn.addEventListener("click", function () {
 
 // Checks if the user wants to close the page & makes them confirm it
 window.addEventListener("beforeunload", function (e) {
-    if (e) {
-        e.returnValue = "Are you sure?"
+    // Dont ask when the user resets the save
+    if (!reload) {
+        if (e) {
+            e.returnValue = "Are you sure?"
+        }
     }
 }, false)

@@ -15,6 +15,7 @@ const resetBtn = document.getElementById("resetbtn")
 let currentClickAmount = 1
 let bits = 0
 let timer = -1337
+let saveTimer = -1338
 let reload = false
 
 let cpu = {
@@ -28,6 +29,9 @@ let gpu = {
     gpuPower : 0,
     gpuLvl : 0
 }
+
+// Autosave after 1min
+saveTimer = setInterval(save, 60000)
 
 // Check if the player has an existing save & load it
 if (localStorage.length !== 0) {
@@ -63,13 +67,15 @@ function gpuPassive() {
     render()
 }
 
-//TODO: Add Autosave after 1 min
-
-saveBtn.addEventListener("click", function () {
+function save() {
     localStorage.setItem("cpuInfo", JSON.stringify(cpu))
     localStorage.setItem("gpuInfo", JSON.stringify(gpu))
     localStorage.setItem("bitInfo", JSON.stringify(bits))
     localStorage.setItem("clickInfo", JSON.stringify(currentClickAmount))
+}
+
+saveBtn.addEventListener("click", function () {
+    save()
 })
 
 resetBtn.addEventListener("click", function () {
@@ -77,6 +83,11 @@ resetBtn.addEventListener("click", function () {
         if(localStorage.getItem("cpuInfo") !== null) {
             localStorage.clear()
         }
+        
+        if(saveTimer !== -1338) {
+            clearInterval(saveTimer)
+        }
+        
         reload = true
         location.reload()
         reload = false
